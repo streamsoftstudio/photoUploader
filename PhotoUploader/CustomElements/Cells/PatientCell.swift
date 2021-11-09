@@ -26,7 +26,11 @@ class PatientCell: UITableViewCell, Identifiable {
 		patientNameLabel.text = joined
 		
 		if index == 0 {
-			addBorders(.top)
+			if index == of - 1 {
+				addBorders(.all)
+			} else {
+				addBorders(.top)
+			}
 		} else if index == of - 1 {
 			addBorders(.bottom)
 		}
@@ -54,10 +58,17 @@ class PatientCell: UITableViewCell, Identifiable {
 				self.bottomBorderConstraint.constant = 2
 				self.layer.maskedCorners = maskedCorners
 				self.edgeView.layer.maskedCorners = maskedCorners
+			case .all:
+				let maskedCorners: CACornerMask = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner, .layerMinXMinYCorner, .layerMaxXMinYCorner]
+				self.layer.maskedCorners = maskedCorners
+				self.bottomBorderConstraint.constant = 2
+				self.layer.maskedCorners = maskedCorners
+				self.edgeView.layer.maskedCorners = maskedCorners
+				
 		}
 	}
 	
 	enum Border {
-		case top, bottom
+		case top, bottom, all
 	}
 }
