@@ -121,3 +121,30 @@ class NetworkServices {
 		}.resume()
 	}
 }
+
+enum Endpoint: String {
+	case offices
+	case appointments
+	
+	var fileUrl: URL? {
+		switch self {
+			case .offices: return Bundle.main.url(forResource: "offices", withExtension: "json")
+			case .appointments: return Bundle.main.url(forResource: "appointments", withExtension: "json")
+		}
+	}
+}
+
+class NetworkingManager<T: Codable> {
+	static func fetchData(endpoint: Endpoint, completion:@escaping(Result<T, Error>)->()) {
+		let url = endpoint.fileUrl
+		if let url = url {
+			guard let data = try? Data(contentsOf: url) else {
+				return
+			}
+			guard let json = try? JSONDecoder().decode(T.self, from: data) else {
+				return
+			}
+			completion(.success(json))
+		}
+	}
+}

@@ -15,22 +15,14 @@ class LoginViewController: UIViewController, StoryboardInitializable {
 	@IBOutlet weak var passwordErrorLabel: UILabel!
 	@IBOutlet weak var officesTextField: BorderedTextField!
 	@IBOutlet weak var officesErrorLabel: UILabel!
-	var officePicker: UIPickerView!
+	var officePicker = UIPickerView()
 	
 	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 	@IBOutlet weak var loginButton: UIButton!
 	@IBOutlet weak var bottomConstraint: NSLayoutConstraint!
 	@IBOutlet weak var scrollView: UIScrollView!
 	
-	var offices: [Office] = [Office(code: "100", name: "Hundred's Office"),
-							 Office(code: "200", name: "Two Hundred's Office"),
-							 Office(code: "300", name: "Three Hundred's Office"),
-							 Office(code: "400", name: "Four Hundred's Office"),
-							 Office(code: "500", name: "Five Hundred's Office"),
-							 Office(code: "600", name: "Six Hundred's Office"),
-							 Office(code: "700", name: "Seven Hundred's Office"),
-							 Office(code: "800", name: "Eight Hundred's Office"),
-							 Office(code: "900", name: "Nine Hundred's Office")]
+	var offices: [Office] = []
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +44,18 @@ class LoginViewController: UIViewController, StoryboardInitializable {
 	
 	private func fetchOffices() {
 		activityIndicator.startAnimating()
+		
+		NetworkingManager<[Office]>.fetchData(endpoint: .offices) { result in
+			switch result {
+				case .failure(let error): print("Could not fetch JSON")
+				case .success(let offices):
+					self.offices = offices
+					self.officePicker.reloadAllComponents()
+					self.officesTextField.text = self.offices[0].display
+					self.activityIndicator.stopAnimating()					
+			}
+		}
+		
 		networkServices.getOffices { result in
 			switch result {
 				case .failure(let error): print(error)
@@ -60,7 +64,7 @@ class LoginViewController: UIViewController, StoryboardInitializable {
 					self.offices = officeResponse.offices
 					self.officePicker.reloadAllComponents()
 					self.activityIndicator.stopAnimating()
-					self.officesTextField.text = self.offices[0].name
+					self.officesTextField.text = self.offices[0].display
 			}
 		}
 	}
@@ -115,7 +119,6 @@ class LoginViewController: UIViewController, StoryboardInitializable {
 	}
 
 	@IBAction func loginButtonAction(_ sender: UIButton) {
-		self.navigate() //temp call
 		usernameErrorLabel.isHidden = usernameTextField.validate != nil
 		passwordErrorLabel.isHidden = passwordTextField.validate != nil
 		officesErrorLabel.isHidden = officesTextField.validate != nil
@@ -142,11 +145,16 @@ class LoginViewController: UIViewController, StoryboardInitializable {
 	private func navigate() {
 		let vc = TodaysAppointmentsViewController.initFromStoryboard()
 		vc.modalPresentationStyle = .fullScreen
-		vc.patients = [User(userName: "Dusan", facilityCode: "3700", token: "13054591-0"),
-					   User(userName: "Milan", facilityCode: "3701", token: "12354629-0"),
-					   User(userName: "Marko", facilityCode: "3702", token: "13042471-0"),
-					   User(userName: "Slobodan", facilityCode: "3703", token: "1237832-0")]
-		present(vc, animated: true, completion: nil)
+		
+		NetworkingManager<[Appointment]>.fetchData(endpoint: .appointments) { result in
+			switch result {
+				case .failure(let error): print("Could not fetch JSON")
+				case .success(let appointments):
+					vc.appointments = appointments
+					self.present(vc, animated: true, completion: nil)
+			}
+		}
+		
 	}
 	
 	deinit {
@@ -164,11 +172,11 @@ extension LoginViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 	}
 	
 	func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-		return offices[row].name
+		return offices[row].display
 	}
 	
 	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-		self.officesTextField.text = self.offices[row].name
+		self.officesTextField.text = self.offices[row].display
 	}
 }
 

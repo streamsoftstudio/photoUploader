@@ -13,16 +13,17 @@ class PatientCell: UITableViewCell, Identifiable {
 	@IBOutlet weak var edgeView: UIView!
 	@IBOutlet weak var patientNameLabel: UILabel!
 	@IBOutlet weak var cameraButton: UIButton!
-	var patient: User!
-	var didSelectCamera:((User)->())?
+	var appointment: Appointment!
+	var didSelectCamera:((Appointment)->())?
+	
 	override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-	func configure(_ patient: User, index: Int, of: Int) {
-		self.patient = patient
-		let joined = patient.userName + " " + "(\(patient.token))"
+	func configure(_ appointment: Appointment, index: Int, of: Int) {
+		self.appointment = appointment
+		let joined = appointment.fullName! + " " + "(\(appointment.AccountNumber))"
 		patientNameLabel.text = joined
 		
 		if index == 0 {
@@ -37,7 +38,7 @@ class PatientCell: UITableViewCell, Identifiable {
 	}
 
 	@IBAction func cameraButtonTapped(_ sender: UIButton) {
-		didSelectCamera?(self.patient)
+		didSelectCamera?(self.appointment)
 	}
 	
 	func addBorders(_ border: Border) {

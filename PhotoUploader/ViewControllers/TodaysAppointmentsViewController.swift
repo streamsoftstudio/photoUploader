@@ -8,8 +8,8 @@
 import UIKit
 
 class TodaysAppointmentsViewController: UIViewController, StoryboardInitializable {
-	var patients: [User] = []
-	var filteredPatients: [User] = [] {
+	var appointments: [Appointment] = []
+	var filteredAppointments: [Appointment] = [] {
 		didSet {
 			tableView.reloadData()
 		}
@@ -23,7 +23,7 @@ class TodaysAppointmentsViewController: UIViewController, StoryboardInitializabl
 
 		navigationBar.delegate = self
 		filterTextField.delegate = self
-		filteredPatients = patients
+		filteredAppointments = appointments
     }
 
 }
@@ -40,15 +40,15 @@ extension TodaysAppointmentsViewController: UITableViewDelegate, UITableViewData
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return filteredPatients.count
+		return filteredAppointments.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: PatientCell.identifier, for: indexPath) as! PatientCell
-		let patient = filteredPatients[indexPath.row]
-		cell.configure(patient, index: indexPath.row, of: filteredPatients.count)
+		let patient = filteredAppointments[indexPath.row]
+		cell.configure(patient, index: indexPath.row, of: filteredAppointments.count)
 		cell.didSelectCamera = {patient in
-			print("Start camera for \(patient.userName)")
+			print("Start camera for \(patient.fullName)")
 		}
 		return cell
 	}
@@ -61,11 +61,11 @@ extension TodaysAppointmentsViewController: UITableViewDelegate, UITableViewData
 extension TodaysAppointmentsViewController: UITextFieldDelegate {
 	func textFieldDidChangeSelection(_ textField: UITextField) {
 		guard textField.validate != nil else {
-			self.filteredPatients = self.patients
+			self.filteredAppointments = self.appointments
 			return
 		}
-		self.filteredPatients = self.patients.filter {($0.userName.lowercased().contains(textField.text!.lowercased()) ||
-													   $0.token.lowercased().contains(textField.text!.lowercased()))}
+		self.filteredAppointments = self.appointments.filter {($0.fullName!.lowercased().contains(textField.text!.lowercased())) ||
+																("\($0.AccountNumber)".lowercased().contains(textField.text!.lowercased()))}
 		
 	}
 }
