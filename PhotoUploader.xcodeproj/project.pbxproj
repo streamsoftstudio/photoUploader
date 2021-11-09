@@ -58,6 +58,7 @@
 		AF7919A3273A73AC006A9C42 /* NavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF7919A1273A73AC006A9C42 /* NavigationBar.xib */; };
 		AF7919A6273A85A6006A9C42 /* PatientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7919A5273A85A6006A9C42 /* PatientCell.swift */; };
 		AF7919A8273A85F2006A9C42 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7919A7273A85F2006A9C42 /* Identifiable.swift */; };
+		AF7919AA273AA52F006A9C42 /* BorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7919A9273AA52F006A9C42 /* BorderedTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +115,7 @@
 		AF7919A1273A73AC006A9C42 /* NavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationBar.xib; sourceTree = "<group>"; };
 		AF7919A5273A85A6006A9C42 /* PatientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientCell.swift; sourceTree = "<group>"; };
 		AF7919A7273A85F2006A9C42 /* Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
+		AF7919A9273AA52F006A9C42 /* BorderedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +288,7 @@
 				AF7919A4273A858F006A9C42 /* Cells */,
 				AF7919A0273A73AC006A9C42 /* NavigationBar.swift */,
 				AF7919A1273A73AC006A9C42 /* NavigationBar.xib */,
+				AF7919A9273AA52F006A9C42 /* BorderedTextField.swift */,
 			);
 			path = CustomElements;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 			files = (
 				AF1D0DE727399F8800806E77 /* LoginViewController.swift in Sources */,
 				AF1D0DD42739342000806E77 /* DatabaseServicesImpl.swift in Sources */,
+				AF7919AA273AA52F006A9C42 /* BorderedTextField.swift in Sources */,
 				AF1D0DE92739AFE900806E77 /* ThemeManager.swift in Sources */,
 				AF1D0DB22739255500806E77 /* NetworkConstants.swift in Sources */,
 				AF1D0DD12739342000806E77 /* DatabaseServices.swift in Sources */,
@@ -565,7 +569,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XHKRD4QAYM;
+				DEVELOPMENT_TEAM = KU677TG57T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PhotoUploader/SupportFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -578,7 +582,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.motto.PhotoUploader;
+				PRODUCT_BUNDLE_IDENTIFIER = com.motto.photouploaderios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -593,7 +597,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XHKRD4QAYM;
+				DEVELOPMENT_TEAM = KU677TG57T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PhotoUploader/SupportFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -606,7 +610,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.motto.PhotoUploader;
+				PRODUCT_BUNDLE_IDENTIFIER = com.motto.photouploaderios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

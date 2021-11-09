@@ -9,11 +9,11 @@ import UIKit
 
 class LoginViewController: UIViewController, StoryboardInitializable {
 	var networkServices: NetworkServices!
-	@IBOutlet weak var usernameTextField: UITextField!
+	@IBOutlet weak var usernameTextField: BorderedTextField!
 	@IBOutlet weak var usernameErrorLabel: UILabel!
-	@IBOutlet weak var passwordTextField: UITextField!
+	@IBOutlet weak var passwordTextField: BorderedTextField!
 	@IBOutlet weak var passwordErrorLabel: UILabel!
-	@IBOutlet weak var officesTextField: UITextField!
+	@IBOutlet weak var officesTextField: BorderedTextField!
 	@IBOutlet weak var officesErrorLabel: UILabel!
 	var officePicker: UIPickerView!
 	

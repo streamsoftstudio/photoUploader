@@ -9,7 +9,7 @@ import UIKit
 
 class TodaysAppointmentsViewController: UIViewController, StoryboardInitializable {
 	var patients: [User] = []
-	
+	@IBOutlet weak var filterTextField: BorderedTextField!
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var navigationBar: NavigationBar!
 	override func viewDidLoad() {
@@ -38,7 +38,7 @@ extension TodaysAppointmentsViewController: UITableViewDelegate, UITableViewData
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: PatientCell.identifier, for: indexPath) as! PatientCell
 		let patient = patients[indexPath.row]
-		cell.configure(patient)
+		cell.configure(patient, index: indexPath.row, of: patients.count)
 		cell.didSelectCamera = {patient in
 			print("Start camera for \(patient.userName)")
 		}

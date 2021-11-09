@@ -28,9 +28,6 @@
                     <state key="normal">
                         <imageReference key="image" image="line.3.horizontal" catalog="system" symbolScale="large"/>
                     </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="menuBUttonTapped:" destination="-1" eventType="touchUpInside" id="5UK-5K-7QE"/>
                     </connections>
