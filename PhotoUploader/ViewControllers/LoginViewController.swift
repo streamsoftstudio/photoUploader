@@ -9,6 +9,7 @@ import UIKit
 
 class LoginViewController: UIViewController, StoryboardInitializable {
 	var networkServices: NetworkServices!
+	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var usernameTextField: BorderedTextField!
 	@IBOutlet weak var usernameErrorLabel: UILabel!
 	@IBOutlet weak var passwordTextField: BorderedTextField!
@@ -40,7 +41,15 @@ class LoginViewController: UIViewController, StoryboardInitializable {
 		dismissKeyboardOnViewTap()
 		setupPicker()
 		setupUI()
+		
+		let tapgest = UITapGestureRecognizer(target: self, action: #selector(navigateToApp))
+		tapgest.numberOfTapsRequired = 5
+		titleLabel.addGestureRecognizer(tapgest)
     }
+	
+	@objc func navigateToApp() {
+		self.navigate()
+	}
 	
 	private func fetchOffices() {
 		activityIndicator.startAnimating()

@@ -31,6 +31,7 @@ class TodaysAppointmentsViewController: UIViewController, StoryboardInitializabl
 extension TodaysAppointmentsViewController: NavigationBarDelegate {
 	func didSelectMenu() {
 		print("Menu selected")
+		self.dismiss(animated: true, completion: nil) //temp dimissal
 	}
 }
 
